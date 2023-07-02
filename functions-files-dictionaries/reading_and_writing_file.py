@@ -43,11 +43,9 @@ with open(fname, 'r') as fileref:
 # with will automatically close the file once the program exits the with block.
 
 
-
-
 from faker import Faker
 
-fileref = open("../textFile1.txt", "r")
+fileref = open("../data_sources/textFile1.txt", "r")
 # contents = fileref.read()  # This will read everything. and not recommended for the sake of saving the memory
 # print(len(contents))
 # lines = fileref.readlines()  # it returns a list of string one string is for an each line.
