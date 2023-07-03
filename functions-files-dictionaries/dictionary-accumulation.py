@@ -140,4 +140,3 @@ for i in d:
         print(min_value)
         """
 
-
