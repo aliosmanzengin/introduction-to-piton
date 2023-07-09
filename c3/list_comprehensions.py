@@ -35,7 +35,6 @@ print(map(lambda x: x * 2, filter(lambda y: y % 2 == 0, things)))
 # equivalent version using list comprehension
 print([x * 2 for x in things if x % 2 == 0])
 
-
 # Example
 # The for loop below produces a list of numbers greater than 10. Below the given code, use list comprehension
 # to accomplish the same thing. Assign it the the variable lst2. Only one line of code is needed.
@@ -48,11 +47,32 @@ print(lst)
 
 lst2 = [num for num in L if num > 10]
 
-
 # Write code to assign to the variable compri all the values of the key name in any of the sub-dictionaries in the
 # dictionary tester. Do this using a list comprehension.
-tester = {'info': [{"name": "Lauren", 'class standing': 'Junior', 'major': "Information Science"},{'name': 'Ayo', 'class standing': "Bachelor's", 'major': 'Information Science'}, {'name': 'Kathryn', 'class standing': 'Senior', 'major': 'Sociology'}, {'name': 'Nick', 'class standing': 'Junior', 'major': 'Computer Science'}, {'name': 'Gladys', 'class standing': 'Sophomore', 'major': 'History'}, {'name': 'Adam', 'major': 'Violin Performance', 'class standing': 'Senior'}]}
+tester = {'info': [{"name": "Lauren", 'class standing': 'Junior', 'major': "Information Science"},
+                   {'name': 'Ayo', 'class standing': "Bachelor's", 'major': 'Information Science'},
+                   {'name': 'Kathryn', 'class standing': 'Senior', 'major': 'Sociology'},
+                   {'name': 'Nick', 'class standing': 'Junior', 'major': 'Computer Science'},
+                   {'name': 'Gladys', 'class standing': 'Sophomore', 'major': 'History'},
+                   {'name': 'Adam', 'major': 'Violin Performance', 'class standing': 'Senior'}]}
 
 compri = [names['name'] for names in tester['info']]
 print(compri)
 
+students = [('Tommy', 95), ('Linda', 63), ('Carl', 70), ('Bob', 100), ('Raymond', 50), ('Sue', 75)]
+
+passed = [name for name, grade in students if grade >= 70]
+
+# Below, we have provided a species list and a population list. Use zip to combine these lists into one list of
+# tuples called pop_info. From this list, create a new list called endangered that contains the names of species
+# whose populations are below 2500.
+species = ['golden retriever', 'white tailed deer', 'black rhino', 'brown squirrel', 'field mouse', 'orangutan',
+           'sumatran elephant', 'rainbow trout', 'black bear', 'blue whale', 'water moccasin', 'giant panda',
+           'green turtle', 'blue jay', 'japanese beetle']
+
+population = [10000, 90000, 1000, 2000000, 500000, 500, 1200, 8000, 12000, 2300, 7500, 100, 1800, 9500, 125000]
+
+pop_info = list(zip(species, population))
+print(pop_info)
+endangered = [specy for specy, pop in pop_info if pop < 2500]
+print(endangered)

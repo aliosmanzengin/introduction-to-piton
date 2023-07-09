@@ -14,16 +14,21 @@ need a list, you can explicitly turn the output of map into a list: list(map(...
 map actually returns a real list, but to make this code compatible with a full python environment, we always convert 
 it to a list.
 """
+
+
 def triple(value):
-    return 3*value
+    return 3 * value
+
 
 def tripleStuff(a_list):
     new_seq = map(triple, a_list)
     return list(new_seq)
 
+
 def quadrupleStuff(a_list):
-    new_seq = map(lambda value: 4*value, a_list)
+    new_seq = map(lambda value: 4 * value, a_list)
     return list(new_seq)
+
 
 things = [2, 5, 9]
 things3 = tripleStuff(things)
@@ -33,12 +38,11 @@ print(things4)
 
 things = [2, 5, 9]
 
-things4 = map((lambda value: 4*value), things)
+things4 = map((lambda value: 4 * value), things)
 print(list(things4))
 
 # or all on one line
-print(list(map((lambda value: 5*value), [1, 2, 3])))
-
+print(list(map((lambda value: 5 * value), [1, 2, 3])))
 
 # ==========================================================================================================
 """FILTER takes two arguments, a function and a sequence. The function takes one item and return True if the item 
@@ -53,7 +57,14 @@ def keep_evens(nums):
 
 print(keep_evens([3, 4, 6, 7, 0, 1]))
 
-
 lst_check = ['plums', 'watermelon', 'kiwi', 'strawberries', 'blueberries', 'peaches', 'apples', 'mangos', 'papaya']
 
-filter_testing = list(filter(lambda v: 'w' in v,lst_check))
+filter_testing = list(filter(lambda v: 'w' in v, lst_check))
+map_testing = list(map(lambda t: 'Fruit: ' + t, lst_check))
+
+l1 = ['left', 'up', 'front']
+l2 = ['right', 'down', 'back']
+print(l2)
+print("=============")
+opposites = list(filter(lambda t: len(t[0])>3 and len(t[1])>3 ,zip(l1,l2)))
+print(opposites)
