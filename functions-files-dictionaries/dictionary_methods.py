@@ -126,3 +126,7 @@ acopy = opposites.copy()
 acopy['right'] = 'left'    # does not change opposites
 
 print("\n*********************************************\n")
+print(acopy.items())
+
+print(type(['p','a','s'].index('s')))
+
