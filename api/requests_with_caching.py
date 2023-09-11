@@ -9,16 +9,18 @@ res = requests_with_caching.get("https://api.datamuse.com/words?rel_rhy=happy", 
 res = requests_with_caching.get("https://api.datamuse.com/words?rel_rhy=funny", permanent_cache_file="datamuse_cache.txt")
 """
 
-"""
-NOTE
-We have optimized this code for conceptual simplicity, so that it is useful as a teaching tool. It is not very 
-efficient, because it always stores cached contents in a file, rather than saving it in memory. If you are ever 
-implementing the caching pattern just for the duration of a program’s run, you might want to save cached content in a 
-python dictionary in memory rather than writing it to a file.
-"""
-
 import requests
 import json
+
+
+#NOTE
+#We have optimized this code for conceptual simplicity, so that it is useful as a teaching tool. It is not very
+#efficient, because it always stores cached contents in a file, rather than saving it in memory. If you are ever
+#implementing the caching pattern just for the duration of a program’s run, you might want to save cached content in a
+#python dictionary in memory rather than writing it to a file.
+
+
+
 
 PERMANENT_CACHE_FNAME = "permanent_cache.txt"
 TEMP_CACHE_FNAME = "this_page_cache.txt"
@@ -26,7 +28,7 @@ TEMP_CACHE_FNAME = "this_page_cache.txt"
 
 def _write_to_file(cache, fname):
     with open(fname, 'w') as outfile:
-        outfile.write(json.dumps(cache, indent=2))
+        json.dump(cache, outfile, indent=2)
 
 
 def _read_from_file(fname):
@@ -62,7 +64,7 @@ def make_cache_key(baseurl, params_d, private_keys=["api_key"]):
 
 def get(baseurl, params={}, private_keys_to_ignore=["api_key"], permanent_cache_file=PERMANENT_CACHE_FNAME,
         temp_cache_file=TEMP_CACHE_FNAME):
-    full_url = requests.requestURL(baseurl, params)
+    full_url = requests.request.url(baseurl, params)
     cache_key = make_cache_key(baseurl, params, private_keys_to_ignore)
     # Load the permanent and page-specific caches from files
     permanent_cache = _read_from_file(permanent_cache_file)
@@ -78,7 +80,9 @@ def get(baseurl, params={}, private_keys_to_ignore=["api_key"], permanent_cache_
     else:
         print("new; adding to cache")
         # actually request it
-        resp = requests.get(baseurl, params)
+        resp = requests.get(baseurl, params=params)
         # save it
         add_to_cache(temp_cache_file, cache_key, resp.text)
         return resp
+
+
